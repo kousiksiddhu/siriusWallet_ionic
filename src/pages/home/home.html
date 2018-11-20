@@ -1,17 +1,182 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
-  </ion-navbar>
-</ion-header>
 
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+<ion-content>
+    <ion-grid class="total">
+      <ion-row>
+        <ion-col col-7 class="total-text">
+          <ion-item class="vendor">
+            <ion-label>Send to </ion-label>
+            <ion-select [(ngModel)]="vendor" submitText="Okay" cancelText="Cancel">
+              <ion-option value="vendor">Vendor</ion-option>
+              <ion-option value="steve">Steve</ion-option>
+              <ion-option value="mani">Mani</ion-option>
+              <ion-option value="ravi">Ravi</ion-option>
+              <ion-option value="stephen">Stephen</ion-option>
+              <ion-option value="joseph">Joseph</ion-option>
+              <ion-option value="james">James</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col col-5 class="total-amount">
+          {{amountToBeSent}}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="sub-total">
+          <button (click)="removeAmount(i, amt);" *ngFor="let amt of subTotal; let i = index;">
+            <span ion-button round>{{amt.amount}}</span>
+            <ion-badge color="danger">x</ion-badge>
+            <ion-badge class="badge-img"><img src="./assets/imgs/{{amt.imgSrc}}.png" alt=""></ion-badge>
+          </button>
+        </ion-col>
+      </ion-row>
+      <ion-row class="amount-remaining">
+        <ion-col col-6 class="balance-text">Balance</ion-col>
+        <ion-col col-6 class="balance-amount">{{amountRemaining}}</ion-col>
+      </ion-row>
+    </ion-grid>
+    <div class="brand">
+      <div class="scroll-container">
+        <div class="fab-container top">
+          <ion-fab #fab1>
+            <button ion-fab color="danger" (click)="closeOtherFabs(fab2,fab3,fab4,fab5,fab6,fab7,fab8);"><img src="./assets/imgs/diary-milk.png" alt="diary milk" class="brand-img"/></button>
+            <ion-fab-list side="top">
+              <button ion-fab color="primary" (click)="addAmount(1, 'diary-milk')">1</button>
+            </ion-fab-list>
+            <ion-fab-list side="right">
+              <button ion-fab color="dark" (click)="addAmount(2, 'diary-milk')">2</button>
+            </ion-fab-list>
+            <ion-fab-list side="bottom">
+              <button ion-fab color="secondary" (click)="addAmount(5, 'diary-milk')">5</button>
+            </ion-fab-list>
+            <ion-fab-list side="left">
+              <button ion-fab color="light" (click)="addAmount(10, 'diary-milk')">10</button>
+            </ion-fab-list>
+          </ion-fab>
+        </div><!--
+        --><div class="fab-container bottom p-5">
+          <ion-fab #fab2>
+            <button ion-fab color="danger" (click)="closeOtherFabs(fab1,fab3,fab4,fab5,fab6,fab7,fab8);"><img src="./assets/imgs/lays-classic.png" alt="lays" class="brand-img"/></button>
+            <ion-fab-list side="top">
+              <button ion-fab color="primary" (click)="addAmount(15, 'lays-classic')">15</button>
+            </ion-fab-list>
+            <ion-fab-list side="right">
+              <button ion-fab color="dark" (click)="addAmount(20, 'lays-classic')">20</button>
+            </ion-fab-list>
+            <ion-fab-list side="bottom">
+              <button ion-fab color="secondary" (click)="addAmount(25, 'lays-classic')">25</button>
+            </ion-fab-list>
+            <ion-fab-list side="left">
+              <button ion-fab color="light" (click)="addAmount(30, 'lays-classic')">30</button>
+            </ion-fab-list>
+          </ion-fab>
+        </div><!--
+        --><div class="fab-container top p-10">
+          <ion-fab #fab3>
+            <button ion-fab color="danger" (click)="closeOtherFabs(fab1,fab2,fab4,fab5,fab6,fab7,fab8);"><img src="./assets/imgs/cavins.png" alt="lays" class="brand-img"/></button>
+            <ion-fab-list side="top">
+              <button ion-fab color="primary" (click)="addAmount(20, 'cavins')">20</button>
+            </ion-fab-list>
+            <ion-fab-list side="right">
+              <button ion-fab color="dark" (click)="addAmount(25, 'cavins')">25</button>
+            </ion-fab-list>
+            <ion-fab-list side="bottom">
+              <button ion-fab color="secondary" (click)="addAmount(30, 'cavins')">30</button>
+            </ion-fab-list>
+            <!-- <ion-fab-list side="left">
+              <button ion-fab color="light" (click)="addAmount(45, 'cavins')">45</button>
+            </ion-fab-list> -->
+          </ion-fab>
+        </div><!--
+      --><div class="fab-container bottom">
+        <ion-fab #fab4>
+          <button ion-fab color="danger" (click)="closeOtherFabs(fab1,fab2,fab3,fab5,fab6,fab7,fab8);"><img src="./assets/imgs/good-day.png" alt="diary milk" class="brand-img"/></button>
+          <ion-fab-list side="top">
+            <button ion-fab color="primary" (click)="addAmount(5, 'good-day')">5</button>
+          </ion-fab-list>
+          <ion-fab-list side="right">
+            <button ion-fab color="dark" (click)="addAmount(10, 'good-day')">10</button>
+          </ion-fab-list>
+          <ion-fab-list side="bottom">
+            <button ion-fab color="secondary" (click)="addAmount(15, 'good-day')">15</button>
+          </ion-fab-list>
+          <!-- <ion-fab-list side="left">
+            <button ion-fab color="light" (click)="addAmount(10, 'good-day')">10</button>
+          </ion-fab-list> -->
+        </ion-fab>
+      </div><!--
+      --><div class="fab-container top">
+        <ion-fab #fab5>
+          <button ion-fab color="danger" (click)="closeOtherFabs(fab1,fab2,fab3,fab4,fab6,fab7,fab8);"><img src="./assets/imgs/hide-and-seek.png" alt="diary milk" class="brand-img"/></button>
+          <ion-fab-list side="top">
+            <button ion-fab color="primary" (click)="addAmount(5,'hide-and-seek')">5</button>
+          </ion-fab-list>
+          <ion-fab-list side="right">
+            <button ion-fab color="dark" (click)="addAmount(10,'hide-and-seek')">10</button>
+          </ion-fab-list>
+          <!-- <ion-fab-list side="bottom">
+            <button ion-fab color="secondary" (click)="addAmount(5,'hide-and-seek')">5</button>
+          </ion-fab-list>
+          <ion-fab-list side="left">
+            <button ion-fab color="light" (click)="addAmount(10,'hide-and-seek')">10</button>
+          </ion-fab-list> -->
+        </ion-fab>
+      </div><!--
+      --><div class="fab-container bottom p-5">
+        <ion-fab #fab6>
+          <button ion-fab color="danger" (click)="closeOtherFabs(fab1,fab2,fab3,fab4,fab5,fab7,fab8);"><img src="./assets/imgs/maggi.png" alt="diary milk" class="brand-img"/></button>
+          <ion-fab-list side="top">
+            <button ion-fab color="primary" (click)="addAmount(25, 'maggi')">25</button>
+          </ion-fab-list>
+          <ion-fab-list side="right">
+            <button ion-fab color="dark" (click)="addAmount(30, 'maggi')">30</button>
+          </ion-fab-list>
+          <ion-fab-list side="bottom">
+            <button ion-fab color="secondary" (click)="addAmount(35, 'maggi')">35</button>
+          </ion-fab-list>
+          <!-- <ion-fab-list side="left">
+            <button ion-fab color="light" (click)="addAmount(10, 'maggi')">10</button>
+          </ion-fab-list> -->
+        </ion-fab>
+      </div><!--
+      --><div class="fab-container top">
+        <ion-fab #fab7>
+          <button ion-fab color="danger" (click)="closeOtherFabs(fab1,fab2,fab3,fab4,fab5,fab6,fab8);"><img src="./assets/imgs/sandwich.png" alt="diary milk" class="brand-img"/></button>
+          <ion-fab-list side="top">
+            <button ion-fab color="primary" (click)="addAmount(20,'sandwich')">20</button>
+          </ion-fab-list>
+          <ion-fab-list side="right">
+            <button ion-fab color="dark" (click)="addAmount(25,'sandwich')">25</button>
+          </ion-fab-list>
+          <ion-fab-list side="bottom">
+            <button ion-fab color="secondary" (click)="addAmount(30,'sandwich')">30</button>
+          </ion-fab-list>
+          <ion-fab-list side="left">
+            <button ion-fab color="light" (click)="addAmount(35,'sandwich')">35</button>
+          </ion-fab-list>
+        </ion-fab>
+      </div><!--
+      --><div class="fab-container bottom p-5">
+        <ion-fab #fab8>
+          <button ion-fab color="danger" (click)="closeOtherFabs(fab1,fab2,fab3,fab4,fab5,fab6,fab7);"><img src="./assets/imgs/juice.png" alt="diary milk" class="brand-img"/></button>
+          <ion-fab-list side="top">
+            <button ion-fab color="primary" (click)="addAmount(15,'juice')">15</button>
+          </ion-fab-list>
+          <ion-fab-list side="right">
+            <button ion-fab color="dark" (click)="addAmount(20,'juice')">20</button>
+          </ion-fab-list>
+          <ion-fab-list side="bottom">
+            <button ion-fab color="secondary" (click)="addAmount(30,'juice')">30</button>
+          </ion-fab-list>
+          <ion-fab-list side="left">
+            <button ion-fab color="light" (click)="addAmount(40,'juice')">40</button>
+          </ion-fab-list>
+        </ion-fab>
+      </div>
+      </div>
+      <ion-row class="send">
+        <ion-col col-12 class="center">
+          <button type="submit" ion-button round (click)="sendAmount(fabLow, fabMed, fabHigh);">Send &nbsp;<ion-icon name="send"></ion-icon></button>
+        </ion-col>
+      </ion-row>
+    </div>
 </ion-content>
