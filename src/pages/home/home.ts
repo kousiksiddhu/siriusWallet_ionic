@@ -83,4 +83,5 @@ export class HomePage {
   hideLoader(){
     this.loader.dismiss();
   }
+  
 }
